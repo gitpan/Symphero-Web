@@ -3,7 +3,7 @@ use ExtUtils::MakeMaker;
 ##
 # Package version
 #
-my $version='0.2';
+my $version='0.3';
 
 ##
 # Trying to find out current configuration. If it is saved in file -
@@ -88,6 +88,11 @@ sub MY::postamble
 install::
 	\@chmod 700 ./install-templates
 	\@./install-templates $homedir
+	\@echo
+	\@echo "Please read the Symphero::Web manpage for usage instructions."
+	\@echo
+	\@echo "Good luck!"
+	\@echo
 
 devsite::
 	\@ln -s -f ../templates devsite/templates

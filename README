@@ -1,0 +1,81 @@
+Symphero::Web is a part of Symphero open source e-commerce suite. It can
+also be used as a general purpose web templating system that allows you
+to create arbitrary complex web pages and process them in rather optimal
+way.
+
+Most interesting features of Symphero::Web are:
+ * works with CGI or mod_perl (mod_perl is recommended for production
+   grade sites).
+ * site can replace or modify standard Symphero::Web objects if required
+   by overriding or extending their methods. You do not need to
+   re-implement entire object to make a site specific change.
+ * site can create any extension objects or embed third-party extensions
+   as well.
+ * one server can serve arbitrary number of Symphero::Web sites each
+   with however extended fucnctionality without creating any confilcts.
+ * there are standard objects that support e-commerce functionality that
+   is enough to implement amazon-style e-commerce sites relatively
+   easy. That includes credit card authorization, strong cryptography,
+   users database, products database, orders database, shipping tracking
+   and so on.
+
+INSTALLATION
+~~~~~~~~~~~~
+
+Install it in a usual way, just say:
+
+perl Makefile.PL
+make
+make test
+make install
+
+Saying "install Symphero::Web" from CPAN shell is a good way too.
+
+When you run "perl Makefile.PL" you will be asked for Symphero::Web home
+directory. Feel free to point it somewhere inside your home directory
+if you do not feel like modifying /usr/local/symphero (suggested
+default). This is a directory where symphero.pl CGI and mod_perl handler
+would be placed along with default site and default templates. That
+means that entire path to that directory should be world-readable (or at
+least web-server readable).
+
+NOTE: On FreeBSD 4.x (or probably with just some older version of
+MakeMaker) there is a problem with installing to /usr/local/symphero -
+somehow MakeMaker translates it to $(PREFIX)/symphero and PREFIX is
+/usr. I do not yet have a solution for that other then installing it
+somewhere outside /usr/local.
+
+FIRST-TIME RUNNING AND TESTING
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After you installed Symphero::Web you can try it in web
+environment. Configure your Apache server so that it would execute
+(from now on I assume that Symphero::Web was installed into
+/usr/local/symphero) /usr/local/symphero/cgi-bin/symphero.pl when
+someone types URL like http://company.com/cgi-bin/symphero.pl. Here is
+an example configuration for that:
+
+ <VirtualHost 10.0.0.1:80>
+  ServerName   test.company.com
+  ServerAlias  test.company.com
+ 
+  ScriptAlias /cgi-bin/    /SYMPHERO/cgi-bin
+   Options     +ExecCGI
+   SetHandler  cgi-script
+  </Directory>
+ 
+  RewriteEngine on
+  RewriteRule  ^/images/(.*)$	/home/am/s4exp/projects/foocom/images/$1	[L]
+  RewriteRule  ^/(.*)$		/home/am/s4exp/bin/symphero.pl/foocom/$1	[L]
+ </VirtualHost>
+
+SITE DEVELOPMENT
+~~~~~~~~~~~~~~~~
+
+CORE CODE DEVELOPMENT
+~~~~~~~~~~~~~~~~~~~~~
+
+If you plan to make changes to the Symphero::Web code (which is not
+recommended unless you participate in official development) please read
+devsite/README for instructions.
+

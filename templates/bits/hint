@@ -1,4 +1,0 @@
- (<A HREF="/hints/<%NAME/f%>.html" TARGET="wdshint" onClick="window.open('/hints/<%NAME/f%>.html','wdshint','dependent,scrollbars,resizable,width=300,height=400')">?</A>)<%End%>
-
-With graphic:
-<A HREF="/hints/<%NAME/f%>.html" TARGET="wdshint" onClick="window.open('/hints/<%NAME/f%>.html','wdshint','dependent,scrollbars,resizable,width=300,height=400')"><IMG SRC="/images/helpmark.gif" BORDER="0" WIDTH="13" HEIGHT="16" ALT="What is it?"></A><%End%>

@@ -149,7 +149,7 @@ try
   if(substr($path[-1],-5) ne '.html')
    { my $pd=analyze(@path,'index.html');
      if($pd->{objname} ne 'Default')
-      { my $newpath=$cgi->url(-full => 1)."/";
+      { my $newpath=$cgi->url(-full => 1, -path_info => 1)."/";
         print $cgi->redirect(-url => $newpath),
               "Document is really <A HREF=\"$newpath\">here</A>.\n";
         exit 0;

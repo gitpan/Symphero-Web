@@ -1,7 +1,0 @@
-<%Header title="Hint window"%>
-<BODY BGCOLOR="#FFFFEE">
-<FONT FACE="arial, helvetica" SIZE=-1>
-
-<CENTER><A HREF="#" onClick="window.close()">Close this window</A></CENTER>
-<HR>
-
