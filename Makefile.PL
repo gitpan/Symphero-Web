@@ -3,7 +3,7 @@ use ExtUtils::MakeMaker;
 ##
 # Package version
 #
-my $version='0.3';
+my $version='0.5';
 
 ##
 # Trying to find out current configuration. If it is saved in file -
@@ -84,10 +84,16 @@ WriteMakefile( 'AUTHOR'		=> 'Andrew Maltsev <am@xao.com>'
 
 sub MY::postamble
 { <<EOT;
+config::	README
+
+README:	Web.pm
+	\@pod2text Web.pm > README
 
 install::
 	\@chmod 700 ./install-templates
-	\@./install-templates $homedir
+	\@\$(PERL) install-templates $homedir
+	\@\$(PERL) install-site docsite $homedir
+	\@\$(PERL) install-site emptysite $homedir
 	\@echo
 	\@echo "Please read the Symphero::Web manpage for usage instructions."
 	\@echo
@@ -100,8 +106,13 @@ devsite::
 	\@if [ ! -d devsite/projects ]; then \\
 		mkdir devsite/projects; \\
 		chmod 755 devsite/projects; \\
-		ln -s -f ../../docsite devsite/projects; \\
 	fi
+	\@if [ -d devsite/projects -a ! -d devsite/projects/docsite ]; then \\
+		ln -s -f ../../docsite devsite/projects; \\
+	fi 
+	\@if [ -d devsite/projects -a ! -d devsite/projects/emptysite ]; then \\
+		ln -s -f ../../emptysite devsite/projects; \\
+	fi 
 	\@if [ ! -d devsite/cgi-bin ]; then \\
 		mkdir devsite/cgi-bin; \\
 	fi

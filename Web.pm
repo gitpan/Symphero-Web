@@ -43,7 +43,7 @@ as well.
 =item *
 
 One server can serve arbitrary number of Symphero::Web sites each
-with however extended fucnctionality without creating any confilcts.
+with however extended functionality without creating any conflicts.
 
 =item *
 
@@ -139,7 +139,7 @@ usual way and maps everything else to symphero.pl. Try going to just
 http://test.company.com/ now and see the difference.
 
 And finally, here is an example of mod_perl configuration. Please
-replave ScriptAlias with the following:
+replace ScriptAlias with the following:
 
  <Directory   /usr/local/symphero/cgi-bin>
   Options +ExecCGI
@@ -160,9 +160,9 @@ Here is a couple of steps to start development of a new site:
 
 =item 1
 
-Choose a name for your site. It have to start with B<lowercase letter> and
+Choose a name for your site. It have to start with a B<lowercase letter> and
 may contain letters, digits and underscore sign. Let's assume you've
-choosen "mysite" as a name.
+chosen "mysite" as a name.
 
 =item 2
 

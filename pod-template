@@ -1,0 +1,31 @@
+=head1 NAME
+
+Symphero::Objects::Page - XXXXXX
+
+=head1 SYNOPSIS
+
+Currently is only useful in Symphero::Web site context.
+
+=head1 DESCRIPTION
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCccc
+
+=head1 METHODS
+
+No publicly available methods except overriden display().
+
+=head1 EXPORTS
+
+Nothing.
+
+=head1 AUTHOR
+
+Brave New Worlds, Inc.: Andrew Maltsev <am@xao.com>.
+
+=head1 SEE ALSO
+
+Recommended reading:
+L<Symphero::Web>,
+L<Symphero::Page>.
+
+=cut

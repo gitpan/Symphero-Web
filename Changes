@@ -1,5 +1,25 @@
 Revision history for Perl extension Symphero::Web.
 
-0.1  Fri Feb 23 14:35:22 2001
+0.5: 15-Mar-2001
+
+    Documentation is expanded (Symphero::Web and
+    Symphero::Objects::Page), yet a lot to write up :(
+
+    `Outsub' is completely removed as outdated and not used anywhere.
+
+    Methods in Page re-ordered and cleaned up a little bit.
+
+    Fixed major bug in parser - it did not decode &amp; stuff as
+    supposed. I do not know why I did not find that before :)
+
+0.4: 8-Mar-2001
+
+	Should be fully functional less foocom example site.
+
+        :: is now supported in object names and refers to objects in
+        subdirectories in usual way.
+
+0.1: 23-Feb-2001
+
 	Converted from current CVS version of Symphero.
 

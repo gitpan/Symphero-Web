@@ -8,3 +8,4 @@ pm_to_blib
 ^devsite/bin
 ^devsite/cgi-bin/symphero.pl
 ^devsite/projects
+^devsite/templates

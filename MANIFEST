@@ -1,10 +1,12 @@
 Changes
 Defaults.PL
 DevSite.PL
+install-site
 install-templates
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
+pod-template
 README
 test.pl
 Web.pm
@@ -97,3 +99,6 @@ docsite/templates/bits/header-common
 docsite/templates/bits/page-footer
 docsite/templates/index.html
 docsite/templates/show_source.html
+ ============================================================ emptysite/
+emptysite/README
+emptysite/modules/Config.pm

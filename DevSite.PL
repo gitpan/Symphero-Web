@@ -37,6 +37,7 @@ use lib qw( $Bin/blib/lib $Bin/blib/arch/auto);
 use Symphero::Utils;
 Symphero::Utils::set_debug(1);
 do '$Bin/blib/script/symphero.pl';
+die \$@ if \$@;
 EOT
 close(F);
 chmod 0755,$outfile;

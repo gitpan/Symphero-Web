@@ -231,9 +231,10 @@ sub config_param ($%)
 # Builds a piece of HTML containing current CGI parameters
 # Arguments are:
 #  params => comma separated list of parameters
+#  except => comma separated list of exceptions from `params'
 #  result => [ query | form ]
 #
-# Parameter names may end with '*', then all parameters metching this
+# Parameter names may end with '*', then all parameters matching this
 # template are used.
 #
 sub pass_cgi_params ($%)
@@ -241,7 +242,25 @@ sub pass_cgi_params ($%)
   my $args=get_args(\@_);
 
   ##
-  # First expanding parameters in list
+  # Creating list of exceptions
+  #
+  my %except;
+  foreach my $param (split(/[,\s]/,$args->{except}))
+   { $param=~s/\s//gs;
+     next unless length($param);
+     if(index($param,'*') != -1)
+      { $param=substr($param,0,index($param,'*'));
+        foreach my $p ($self->{siteconfig}->cgi->param)
+         { next unless index($p,$param) == 0;
+           $except{$p}=1;
+         }
+        next;
+      }
+     $except{$param}=1;
+   }
+
+  ##
+  # Expanding parameters in list
   #
   my @params;
   foreach my $param (split(/[,\s]/,$args->{params}))
@@ -257,10 +276,12 @@ sub pass_cgi_params ($%)
       }
      push @params,$param;
    }
+
+  ##
+  # Creating HTML code that will pass these parameters.
   my $html;
   foreach my $param (@params)
-   { $param=~s/\s//gs;
-     next unless length($param);
+   { next if $except{$param};
      my $value=$self->{siteconfig}->cgi->param($param);
      next unless defined $value;
      if($args->{result} eq 'form')

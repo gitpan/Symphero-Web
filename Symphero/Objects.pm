@@ -10,14 +10,14 @@ use Symphero::SiteConfig;
 ##
 # Prototypes
 #
-sub load ($%);
+sub load (%);
 sub new ($%);
 
 ##
 # Module version.
 #
 use vars qw($VERSION);
-($VERSION)=(q$Id: Objects.pm,v 1.2 2001/03/01 02:48:13 amaltsev Exp $ =~ /(\d+\.\d+)/);
+($VERSION)=(q$Id: Objects.pm,v 1.5 2001/03/14 02:42:01 amaltsev Exp $ =~ /(\d+\.\d+)/);
 
 ##
 # Loads object into memory.
@@ -34,11 +34,11 @@ use vars qw($VERSION);
 #
 # Arguments:
 #  objname => object name.
-#  baseobj => ignore site specific objects even if they exist.
+#  baseobj => ignore site specific objects even if they exist (optional).
 #
 my %objref_cache;
-sub load ($%)
-{ my $class=shift;
+sub load (%)
+{ my $class=(scalar(@_)%2 || ref($_[1]) ? shift(@_) : 'Symphero::Objects');
   my $args=get_args(\@_);
   my $objname=$args->{objname} || "Page";
   my $sitename=get_site_name();
@@ -52,42 +52,41 @@ sub load ($%)
   ##
   # Checking project directory
   #
-  my $objfile;
   my $objref;
   my $system;
   if(!$args->{baseobj} && defined($sitename))
-   { $objfile="$projectsdir/$sitename/objects/$objname.pm";
-     $objref="Symphero::Objects::${sitename}::${objname}" if -r $objfile;
+   { (my $objfile=$objname) =~ s/::/\//sg;
+     $objfile="$projectsdir/$sitename/objects/$objfile.pm";
+     if(open(F,$objfile))
+      { local $/;
+        my $text=<F>;
+        close(F);
+        if($text =~ s{(package\s+Symphero::Objects)(::$objname\s*;)}
+                     {${1}::${sitename}$2})
+         { eval "\n# line 1 \"$objfile\"\n" . $text;
+           throw Symphero::Errors::Objects
+                 "Error loading $objname ($objfile) -- $@" if $@;
+           $objref="Symphero::Objects::${sitename}::${objname}";
+         }
+        else
+         { throw Symphero::Errors::Objects
+                 "Package name is not Symphero::Objects::$objname in $objfile";
+         }
+      }
      $system=0;
    }
   if(! $objref)
-   { $objfile="Symphero::Objects::${objname}";
-     $objref="Symphero::Objects::${objname}";
+   { $objref="Symphero::Objects::${objname}";
+     eval "require $objref";
+     throw Symphero::Errors::Objects "Error loading $objname ($objref) -- $@" if $@;
      $system=1;
    }
 
-dprint "objref=$objref, objfile=$objfile";
-
   ##
-  # This should be handled better, for example by returning ErrorPage
-  # object reference. Or some other guaranteed to exist object.
+  # In case no object was found.
   #
   $objref || throw Symphero::Errors::Objects
                    "No object file found for sitename=$sitename, objname=$objname";
-
-  ##
-  # Fetching object in
-  #
-  if(! $INC{$objfile})
-   { if($system)
-      { eval "require $objfile";
-      }
-     else
-      { eval { require $objfile };
-      }
-     $@ && throw Symphero::Errors::Objects
-                 "Error fetching object for $objref ($objfile) -- $@";
-   }
 
   ##
   # Returning class name and storing into cache

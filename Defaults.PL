@@ -2,6 +2,12 @@
 use strict;
 
 ##
+# File version
+#
+use vars qw($VERSION);
+($VERSION)=(q$Id: Defaults.PL,v 1.5 2001/03/14 02:42:01 amaltsev Exp $ =~ /(\d+\.\d+)/);
+
+##
 # Reading $homedir
 #
 my $homedir;
@@ -60,7 +66,7 @@ use vars qw(\@ISA \@EXPORT_OK \@EXPORT \$VERSION
 ##
 # File version (almost useless, for uniformness)
 #
-(\$VERSION)=(q\$Id: Defaults.PL,v 1.1 2001/03/01 02:48:12 amaltsev Exp \$ =~ /(\\d+\\.\\d+)/);
+\$VERSION='$VERSION';
 
 ##
 # That's it.

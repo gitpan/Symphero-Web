@@ -1,27 +1,28 @@
 #!/usr/bin/perl -w
 #
-# Installs templates to given directory.
+# Installs site to a given directory.
+# Usage:
+#   ./install-site site home-dir
 #
 use strict;
 use File::Path;
 use File::Basename;
 use File::Copy;
 
-my $homedir=$ARGV[0];
+my $sitename=$ARGV[0];
+my $homedir=$ARGV[1];
 die "No homedir given!\n" unless $homedir && -x $homedir;
-if($homedir =~ /\/devsite\b/)
- { print "Would not install templates to devsite installation (this is not an error).\n";
-   exit(0);
- }
-if(-l "$homedir/templates")
- { print "Would not install templates to sym-linked directory ($homedir/templates).\n";
+die "No site name given!\n" unless $sitename && -x $sitename;
+my $sitedir="$homedir/projects/$sitename";
+if(-l $sitedir)
+ { print "Won't install site to sym-linked directory ($sitedir).\n";
    exit(0);
  }
 open(F,'MANIFEST') || die "Cannot open MANIFEST: $!\n";
 while(my $file=<F>)
 { chomp($file);
-  next unless $file =~ /^templates\//;
-  my $outfile=$homedir . '/' . $file;
+  next unless $file =~ /^$sitename\/(.*)$/;
+  my $outfile=$sitedir . '/' . $1;
   print "Copying $file to $outfile\n";
   mkpath([dirname($outfile)],0,0755);
   copy($file,$outfile) || die "Cannot copy $file to $outfile: $!\n";
