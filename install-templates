@@ -1,0 +1,20 @@
+#!/usr/bin/perl -w
+#
+# Installs templates to given directory.
+#
+use strict;
+use File::Path;
+use File::Basename;
+use File::Copy;
+
+my $homedir=$ARGV[0];
+die "No homedir given!\n" unless $homedir && -x $homedir;
+open(F,'MANIFEST') || die "Cannot open MANIFEST: $!\n";
+while(my $file=<F>)
+{ chomp($file);
+  next unless $file =~ /^templates\//;
+  my $outfile=$homedir . '/' . $file;
+  print "Copying $file to $outfile\n";
+  mkpath([dirname($outfile)],0,0755);
+  copy($file,$outfile) || die "Cannot copy $file to $outfile: $!\n";
+}

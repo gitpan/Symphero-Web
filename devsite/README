@@ -1,0 +1,26 @@
+This directory tree can help with debugging and developing Symphero::Web
+modules without their actual installation. You still need to say 'make'
+after any changes though - it uses blib.
+
+When you configure Symphero::Web for development you need to set
+complete path to `devsite' directory as an answer to `Directory Name'
+question.
+
+Then say:
+ make
+ make test
+ make devsite
+
+You do not need to re-make devsite after that as the only thing that it
+does is creating symbolic links to templates and tools.
+
+You need to symlink projects directory to where you have some
+Symphero::Web projects. As a reference you can use `docsite' from
+default installation.
+
+Make usual setup in apache pointing it to devsite/cgi-bin/symphero.pl
+stub.
+
+Good luck and thanx for helping with development.
+
+Andrew <am@xao.com>

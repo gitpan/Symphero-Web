@@ -1,0 +1,13 @@
+<HR SIZE="1" NOSHADE>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%">
+<TR><TD>&nbsp;</TD>
+<TD>
+<FONT SIZE="1">Powered by <A HREF="http://www.symphero.net">Symphero::Web E-Commerce suite</A>, version <%VERSION/h%></FONT>
+</TD>
+<TD ALIGN="RIGHT">
+<FONT SIZE="1"><A HREF="/show_source.html?page=<%Utility/q mode="show-pagedesc"%>">Show Page Source</A></FONT>
+</TD><TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

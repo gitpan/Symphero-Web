@@ -1,0 +1,6 @@
+Revision history for Perl extension Symphero::PageSupport.
+
+0.01  Fri Oct 27 12:51:53 2000
+	- original version; created by h2xs 1.20 with options
+		-A -n Symphero::PageSupport
+

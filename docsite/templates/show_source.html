@@ -1,0 +1,11 @@
+<%SetArg name="PATH" value={/<%CgiParam/f param="page" default="index.html"%>}%>
+
+<%Page path="/bits/header-common"%>
+
+Source of <%PATH%>:
+
+<TABLE BORDER="1" BGCOLOR="#DDDDDD"><TR><TD><PRE>
+<%Page/html path="<%PATH/f%>" unparsed%>
+</PRE></TD></TR></TABLE>
+
+<%Footer%>

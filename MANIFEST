@@ -1,0 +1,97 @@
+Changes
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+Defaults.PL
+DevSite.PL
+test.pl
+install-templates
+ ============================================================ Objects/
+Objects/Makefile.PL
+Objects/Action.pm
+Objects/Admin.pm
+Objects/Authorize.pm
+Objects/BgColor.pm
+Objects/Category.pm
+Objects/CgiParam.pm
+Objects/Condition.pm
+Objects/Content.pm
+Objects/Cookie.pm
+Objects/Date.pm
+Objects/Default.pm
+Objects/FilloutForm.pm
+Objects/Footer.pm
+Objects/Header.pm
+Objects/KPhone.pm
+Objects/Mailer.pm
+Objects/MenuBuilder.pm
+Objects/Order.pm
+Objects/Page.pm
+Objects/ProductData.pm
+Objects/ProductList.pm
+Objects/Redirect.pm
+Objects/SetArg.pm
+Objects/Stub.pm
+Objects/Styler.pm
+Objects/UserAccount.pm
+Objects/UserData.pm
+Objects/Utility.pm
+ ============================================================ PageSupport/
+PageSupport/Changes
+PageSupport/Makefile.PL
+PageSupport/PageSupport.pm
+PageSupport/PageSupport.xs
+PageSupport/test.pl
+ ============================================================ Symphero/
+Symphero/Categories.pm
+Symphero/Makefile.PL
+Symphero/Objects.pm
+Symphero/OrdersDB.pm
+Symphero/ProductsDB.pm
+Symphero/SiteConfig.pm
+Symphero/Templates.pm
+Symphero/test.pl
+Symphero/UsersDB.pm
+ ============================================================ cgi-bin/
+cgi-bin/Makefile.PL
+cgi-bin/symphero.pl
+ ============================================================ tools/
+tools/Makefile.PL
+tools/create-admin.pl
+tools/crypto-db.pl
+ ============================================================ templates/
+templates/admin/index.html
+templates/admin/login.html
+templates/admin/sitemap.html
+templates/admin/bits/editobject/Content-done
+templates/admin/bits/editobject/Content-edit
+templates/admin/bits/editpage-object
+templates/admin/bits/login-form
+templates/admin/bits/sitemap-file
+templates/admin/editobj.html
+templates/admin/editpage.html
+templates/bits/category/empty
+templates/bits/category/option
+templates/bits/category/select
+templates/bits/errors/file-not-found
+templates/bits/hint
+templates/bits/page-footer
+templates/bits/page-header
+templates/bits/styler/page-title
+templates/hints/bits/footer
+templates/hints/bits/header
+templates/hints/reg-card-name.html
+templates/hints/reg-email.html
+templates/hints/reg-password-format.html
+templates/hints/reg-password-question.html
+templates/hints/reg-phone-format.html
+templates/index.html
+ ============================================================ devsite/
+devsite/README
+ ============================================================ docsite/
+docsite/modules/Config.pm
+docsite/README
+docsite/templates/bits/header-common
+docsite/templates/bits/page-footer
+docsite/templates/index.html
+docsite/templates/show_source.html
